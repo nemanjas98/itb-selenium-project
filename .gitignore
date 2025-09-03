@@ -1,0 +1,16 @@
+/target/
+
+/.idea/
+/nbproject/private/
+/*.iml
+
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
