@@ -70,4 +70,12 @@ public class LoginTests extends BasicTest{
                           .contains("/home"),
                           "Url should contain '/home'");
     }
+    
+    @Test (priority = 60)
+    public void Logout(){
+        Assert.assertTrue(navPage.getLogoutButton()
+                          .isDisplayed(),
+                          "Logout button should be displayed");
+        navPage.getLogoutButton().click();
+    }
 }
