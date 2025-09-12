@@ -4,6 +4,7 @@ package com.nemanja.qa.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPage {
@@ -26,6 +27,10 @@ public class LoginPage {
     
     public WebElement getLoginButton(){
         return driver.findElement(By.cssSelector("button[type='submit']"));
+    }
+    
+    public WebElement waitForSuccessfullLogIn(){
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("btnLogout")));
     }
     
 }
