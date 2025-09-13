@@ -53,4 +53,22 @@ public class SignupTests extends BasicTest{
         
     }
     
+    @Test (priority = 40)
+    public void Signup(){
+        navPage.getSignupButton().click();
+        signupPage.getNameInput().sendKeys("Nemanja Stojanovic");
+        signupPage.getMailInput().sendKeys("nemanjast@itbootcamp.rs");
+        signupPage.getPasswordInput().sendKeys("12345");
+        signupPage.getConfirmPasswordInput().sendKeys("12345");
+        signupPage.getSignupButton().click();
+        messagePopUpPage.waitForVerifyAccountPopUp();
+        Assert.assertTrue(messagePopUpPage
+                          .getHeaderMessageFromVerifyPopUp()
+                          .getText()
+                          .contains("IMPORTANT: Verify your account"),
+                          "PopUp should contain 'IMPORTANT: Verify your account' text");
+        messagePopUpPage.getCloseButtonFromVerifyAccountPopUp().click();
+        navPage.getLogoutButton().click();
+    }
+    
 }
