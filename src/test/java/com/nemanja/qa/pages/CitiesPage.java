@@ -59,20 +59,12 @@ public class CitiesPage {
          }
     }
     
-    public void getEditButton(int rowNumber){
-        try {
-            driver.findElement(By.xpath("//tbody/tr[" + rowNumber + "]//button[@id=('edit')]"));
-        } catch (NoSuchElementException e) {
-            System.out.println("Edit button not found in row" + rowNumber);
-         }
+    public WebElement getEditButton(int rowNumber){
+            return driver.findElement(By.xpath("//tbody/tr[" + rowNumber + "]//button[@id=('edit')]"));
     }
      
-    public void getDeleteButton(int rowNumber){
-        try {
-            driver.findElement(By.xpath("//tbody/tr[" + rowNumber + "]//button[@id=('delete')]"));
-        } catch (NoSuchElementException e) {
-            System.out.println("Delete button not found in row" + rowNumber);
-         }
+    public WebElement getDeleteButton(int rowNumber){
+           return driver.findElement(By.xpath("//tbody/tr[" + rowNumber + "]//button[@id=('delete')]"));
     }
      
      public WebElement getCityNameInput(){

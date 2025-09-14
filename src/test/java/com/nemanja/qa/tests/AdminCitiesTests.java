@@ -1,5 +1,6 @@
 package com.nemanja.qa.tests;
 
+import org.openqa.selenium.Keys;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -37,6 +38,25 @@ public class AdminCitiesTests extends BasicTest {
         citiesPage.getNewItemButton().click();
         citiesPage.waitForCreateOrEditDialogToBeVisible();
         citiesPage.getCityNameInput().sendKeys("Nemanja's city");
+        citiesPage.getSaveButtonFromCreateOrEditDialog().click();
+        messagePopUpPage.waitForResponsePopUp();
+        Assert.assertTrue(messagePopUpPage.getTextMessageFromCityPopUp()
+                          .getText()
+                          .contains("Saved successfully"),
+                          "PopUp should contain 'Saved successfully' text");   
+    }
+    
+    @Test (priority = 40)
+    public void EditCity(){
+        navPage.getAdminButton().click();
+        navPage.getAdminCitiesButton().click();
+        citiesPage.getSearchInput().sendKeys("Nemanja's city");
+        citiesPage.waitForNumberOfRowsToBe(1);
+        citiesPage.getEditButton(1).click();
+        citiesPage.waitForCreateOrEditDialogToBeVisible();
+        citiesPage.getCityNameInput().sendKeys(Keys.CONTROL + "a");
+        citiesPage.getCityNameInput().sendKeys(Keys.DELETE);
+        citiesPage.getCityNameInput().sendKeys("Nemanja's city Edited");
         citiesPage.getSaveButtonFromCreateOrEditDialog().click();
         messagePopUpPage.waitForResponsePopUp();
         Assert.assertTrue(messagePopUpPage.getTextMessageFromCityPopUp()
