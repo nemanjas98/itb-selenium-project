@@ -29,5 +29,5 @@ public class AdminCitiesTests extends BasicTest {
                           .equals("text"),
                           "CityName: Value for the type attribute should be text");
     }
-    
+   
 }

@@ -18,7 +18,11 @@ public class MessagePopUpPage {
         this.wait = wait;
     }
     
-    public WebElement waitForErrorPopUp(){
+    public WebElement waitForResponsePopUp(){
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("success")));
+    }
+    
+    public WebElement waitForErrorResponsePopUp(){
        return wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("error")));
     }
     
@@ -40,6 +44,10 @@ public class MessagePopUpPage {
     
     public WebElement getCloseButtonFromVerifyAccountPopUp(){
         return driver.findElement(By.className("btnClose"));
+    }
+    
+    public WebElement getTextMessageFromCityPopUp(){
+        return driver.findElement(By.className("success"));
     }
     
     

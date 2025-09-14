@@ -33,7 +33,7 @@ public class LoginTests extends BasicTest{
         loginPage.getMailInput().sendKeys("non-existing-user@gmail.com");
         loginPage.getPasswordInput().sendKeys("password123");
         loginPage.getLoginButton().click();
-        messagePopUpPage.waitForErrorPopUp();
+        messagePopUpPage.waitForErrorResponsePopUp();
         Assert.assertTrue(messagePopUpPage.getTextMessageFromErrorPopUp()
                            .getText()
                            .contains("User does not exists"),
@@ -49,7 +49,7 @@ public class LoginTests extends BasicTest{
         loginPage.getMailInput().sendKeys("admin@admin.com");
         loginPage.getPasswordInput().sendKeys("password123");
         loginPage.getLoginButton().click();
-        messagePopUpPage.waitForErrorPopUp();
+        messagePopUpPage.waitForErrorResponsePopUp();
         Assert.assertTrue(messagePopUpPage.getTextMessageFromErrorPopUp()
                           .getText()
                           .contains("Wrong password"),
