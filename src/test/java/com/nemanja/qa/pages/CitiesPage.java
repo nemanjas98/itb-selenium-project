@@ -49,14 +49,8 @@ public class CitiesPage {
                  (By.xpath("//*[contains(@class, 'v-data-table__wrapper')]//tbody/tr"), rowNumber));
     }
     
-    public String getDataFromTheTable(int rowNumber, int columnNumber) {
-        try {
-            String cellData = driver.findElement(By.xpath("//tbody/tr[" + rowNumber + "]/td[" + columnNumber + "]")).getText();
-            return cellData;
-        } catch (NoSuchElementException e) {
-            System.out.println("Requested row or column does not exist: row=" + rowNumber + ", column=" + columnNumber);
-            return "null";
-         }
+    public WebElement getDataFromTheTable(int rowNumber, int columnNumber) {
+            return driver.findElement(By.xpath("//tbody/tr[" + rowNumber + "]/td[" + columnNumber + "]"));
     }
     
     public WebElement getEditButton(int rowNumber){

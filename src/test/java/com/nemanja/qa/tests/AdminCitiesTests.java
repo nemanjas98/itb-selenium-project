@@ -64,4 +64,16 @@ public class AdminCitiesTests extends BasicTest {
                           .contains("Saved successfully"),
                           "PopUp should contain 'Saved successfully' text");   
     }
+    
+    @Test (priority = 50)
+    public void SearchCity(){
+        navPage.getAdminButton().click();
+        navPage.getAdminCitiesButton().click();
+        citiesPage.getSearchInput().sendKeys("Nemanja's city Edited");
+        citiesPage.waitForNumberOfRowsToBe(1);
+        Assert.assertTrue(citiesPage.getDataFromTheTable(1, 2)
+                          .getText()
+                          .equals("Nemanja's city Edited"),
+                          "Table's value should be 'Nemanja's city Edited'");
+    }
 }
