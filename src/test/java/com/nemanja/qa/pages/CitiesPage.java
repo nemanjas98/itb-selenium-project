@@ -75,7 +75,9 @@ public class CitiesPage {
          }
     }
      
-     
+     public WebElement getCityNameInput(){
+         return driver.findElement(By.id("name"));
+     }
      
      
      
