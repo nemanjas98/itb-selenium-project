@@ -29,5 +29,19 @@ public class AdminCitiesTests extends BasicTest {
                           .equals("text"),
                           "CityName: Value for the type attribute should be text");
     }
-   
+    
+    @Test (priority = 30)
+    public void CreateNewCity(){
+        navPage.getAdminButton().click();
+        navPage.getAdminCitiesButton().click();
+        citiesPage.getNewItemButton().click();
+        citiesPage.waitForCreateOrEditDialogToBeVisible();
+        citiesPage.getCityNameInput().sendKeys("Nemanja's city");
+        citiesPage.getSaveButtonFromCreateOrEditDialog().click();
+        messagePopUpPage.waitForResponsePopUp();
+        Assert.assertTrue(messagePopUpPage.getTextMessageFromCityPopUp()
+                          .getText()
+                          .contains("Saved successfully"),
+                          "PopUp should contain 'Saved successfully' text");   
+    }
 }
