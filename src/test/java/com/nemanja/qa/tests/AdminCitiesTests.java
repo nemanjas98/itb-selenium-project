@@ -76,4 +76,24 @@ public class AdminCitiesTests extends BasicTest {
                           .equals("Nemanja's city Edited"),
                           "Table's value should be 'Nemanja's city Edited'");
     }
+    
+    @Test (priority = 60)
+    public void DeleteCity(){
+        navPage.getAdminButton().click();
+        navPage.getAdminCitiesButton().click();
+        citiesPage.getSearchInput().sendKeys("Nemanja's city Edited");
+        citiesPage.waitForNumberOfRowsToBe(1);
+        Assert.assertTrue(citiesPage.getDataFromTheTable(1, 2)
+                          .getText()
+                          .equals("Nemanja's city Edited"),
+                          "Table's value should be 'Nemanja's city Edited'");
+        citiesPage.getDeleteButton(1).click();
+        citiesPage.waitforDeleteDialogToBeVisible();
+        citiesPage.getDeleteButtonFromDeleteDialog().click();
+        messagePopUpPage.waitForResponsePopUp();
+        Assert.assertTrue(messagePopUpPage.getTextMessageFromCityPopUp()
+                          .getText()
+                          .contains("Deleted successfully"),
+                          "PopUp should contain 'Deleted successfully' text");
+    }
 }
