@@ -14,4 +14,12 @@ public class AuthRoutesTests extends BasicTest {
                           "Url should contain '/login'");
     }
     
+    @Test (priority = 20)
+    public void ForbidsVisitsToProfileUrlIfNotAuthenticated(){
+        driver.get(baseUrl + "/profile");
+        Assert.assertTrue(driver.getCurrentUrl()
+                          .contains("/login"),
+                          "Url should contain '/login'");
+    }
+    
 }
