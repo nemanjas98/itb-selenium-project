@@ -75,4 +75,8 @@ public class NavPage {
     public WebElement getUaButton(){
         return driver.findElement(By.className("btnUA"));
     }
+    
+    public String getHeaderText(){
+            return driver.findElement(By.xpath("//body//h1")).getText();
+    }
 }
