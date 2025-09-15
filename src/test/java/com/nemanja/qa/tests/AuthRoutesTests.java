@@ -30,4 +30,12 @@ public class AuthRoutesTests extends BasicTest {
                           "Url should contain '/login'");
     }
     
+    @Test (priority = 40)
+    public void ForbidsVisitsToAdminUsersUrlIfNotAuthenticated(){
+        driver.get(baseUrl + "/admin/users");
+        Assert.assertTrue(driver.getCurrentUrl()
+                          .contains("/login"),
+                          "Url should contain '/login'");
+    }
+    
 }
