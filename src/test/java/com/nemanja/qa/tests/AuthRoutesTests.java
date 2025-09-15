@@ -22,4 +22,12 @@ public class AuthRoutesTests extends BasicTest {
                           "Url should contain '/login'");
     }
     
+    @Test (priority = 30)
+    public void ForbidsVisitsToAdminCitiesUrlIfNotAuthenticated(){
+        driver.get(baseUrl + "/admin/cities");
+        Assert.assertTrue(driver.getCurrentUrl()
+                          .contains("/login"),
+                          "Url should contain '/login'");
+    }
+    
 }
