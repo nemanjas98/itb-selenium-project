@@ -4,6 +4,7 @@ import com.nemanja.qa.pages.CitiesPage;
 import com.nemanja.qa.pages.LoginPage;
 import com.nemanja.qa.pages.MessagePopUpPage;
 import com.nemanja.qa.pages.NavPage;
+import com.nemanja.qa.pages.ProfilePage;
 import com.nemanja.qa.pages.SignupPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import java.time.Duration;
@@ -27,6 +28,7 @@ public abstract class BasicTest {
     protected SignupPage signupPage;
     protected CitiesPage citiesPage;
     protected MessagePopUpPage messagePopUpPage;
+    protected ProfilePage profilePage;
 
     
     @BeforeClass 
@@ -42,6 +44,7 @@ public abstract class BasicTest {
         signupPage = new SignupPage(driver, wait);
         citiesPage = new CitiesPage(driver, wait);
         messagePopUpPage = new MessagePopUpPage(driver, wait);
+        profilePage = new ProfilePage(driver, wait);
         }
 	
     @BeforeMethod
