@@ -14,6 +14,12 @@ public class ProfilePage {
     
     private WebDriver driver;
     private WebDriverWait wait;
+    private String currentName;
+    private String currentPhone;
+    private String currentCity;
+    private String currentCountry;
+    private String currentTwitterUrl;
+    private String currentGitHubUrl;
     
     public ProfilePage(WebDriver driver, WebDriverWait wait){
         this.driver = driver;
@@ -44,9 +50,13 @@ public class ProfilePage {
         return driver.findElement(By.id("urlGitHub"));
     }
 
-     public WebElement getPhoneInput(){
+    public WebElement getPhoneInput(){
         return driver.findElement(By.id("phone"));
-    }   
+    }
+     
+    public WebElement getSaveButton(){
+        return driver.findElement(By.className("btnSave"));
+    } 
     
     public void waitForPageToBeLoaded(){
         wait.until(ExpectedConditions
@@ -57,30 +67,35 @@ public class ProfilePage {
         WebElement input = getNameInput();
         input.sendKeys(Keys.CONTROL, "a", Keys.DELETE);
         input.sendKeys(name);
+        this.currentName = name;
     }
     
         public void setPhone(String phone){
         WebElement input = getPhoneInput();
         input.sendKeys(Keys.CONTROL, "a", Keys.DELETE);
         input.sendKeys(phone);
+        this.currentPhone = phone;
     }
     
         public void setCountry(String country){
         WebElement input = getCountryInput();
         input.sendKeys(Keys.CONTROL, "a", Keys.DELETE);
         input.sendKeys(country);
+        this.currentCountry = country;
     }  
         
         public void setTwitterUrl(String twitterUrl){
         WebElement input = getTwitterUrlInput();
         input.sendKeys(Keys.CONTROL, "a", Keys.DELETE);
         input.sendKeys(twitterUrl);
+        this.currentTwitterUrl = twitterUrl;
     }      
         
         public void setGitHubUrl(String gitHubUrl){
-        WebElement input = getTwitterUrlInput();
+        WebElement input = getGitHubUrlInput();
         input.sendKeys(Keys.CONTROL, "a", Keys.DELETE);
         input.sendKeys(gitHubUrl);
+        this.currentGitHubUrl = gitHubUrl;
     }             
     
     public void selectCity(String cityName){
@@ -94,6 +109,7 @@ public class ProfilePage {
                 wait.until(ExpectedConditions.elementToBeClickable(option)).click();
                 break;
             }
+            this.currentCity = cityName;
         }
      }
     
@@ -112,6 +128,23 @@ public class ProfilePage {
             Assert.assertEquals(entry.getKey().getAttribute("type"),
                                 entry.getValue(),
                                 "Input type mismatch for element: " + entry.getKey());
+        }
+    }
+    
+    public void verifyInputValues(){
+        Map<WebElement, String> inputValues = Map.of(
+        getNameInput(), this.currentName,
+        getCityInput(), this.currentCity,
+        getCountryInput(), this.currentCountry,
+        getTwitterUrlInput(), this.currentTwitterUrl,
+        getGitHubUrlInput(), this.currentGitHubUrl,
+        getPhoneInput(), this.currentPhone                
+        );
+        
+        for(Map.Entry<WebElement, String> entry : inputValues.entrySet()){
+            Assert.assertEquals(entry.getKey().getAttribute("value"),
+                                entry.getValue(),
+                                "Value mismatch for: " + entry.getKey());
         }
     }
     

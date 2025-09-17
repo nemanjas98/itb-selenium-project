@@ -40,7 +40,7 @@ public class AdminCitiesTests extends BasicTest {
         citiesPage.getCityNameInput().sendKeys("Nemanja's city");
         citiesPage.getSaveButtonFromCreateOrEditDialog().click();
         messagePopUpPage.waitForResponsePopUp();
-        Assert.assertTrue(messagePopUpPage.getTextMessageFromCityPopUp()
+        Assert.assertTrue(messagePopUpPage.getTextMessageFromPopUp()
                           .getText()
                           .contains("Saved successfully"),
                           "PopUp should contain 'Saved successfully' text");   
@@ -59,7 +59,7 @@ public class AdminCitiesTests extends BasicTest {
         citiesPage.getCityNameInput().sendKeys("Nemanja's city Edited");
         citiesPage.getSaveButtonFromCreateOrEditDialog().click();
         messagePopUpPage.waitForResponsePopUp();
-        Assert.assertTrue(messagePopUpPage.getTextMessageFromCityPopUp()
+        Assert.assertTrue(messagePopUpPage.getTextMessageFromPopUp()
                           .getText()
                           .contains("Saved successfully"),
                           "PopUp should contain 'Saved successfully' text");   
@@ -91,7 +91,7 @@ public class AdminCitiesTests extends BasicTest {
         citiesPage.waitforDeleteDialogToBeVisible();
         citiesPage.getDeleteButtonFromDeleteDialog().click();
         messagePopUpPage.waitForResponsePopUp();
-        Assert.assertTrue(messagePopUpPage.getTextMessageFromCityPopUp()
+        Assert.assertTrue(messagePopUpPage.getTextMessageFromPopUp()
                           .getText()
                           .contains("Deleted successfully"),
                           "PopUp should contain 'Deleted successfully' text");

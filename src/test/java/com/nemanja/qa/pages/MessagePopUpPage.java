@@ -46,7 +46,7 @@ public class MessagePopUpPage {
         return driver.findElement(By.className("btnClose"));
     }
     
-    public WebElement getTextMessageFromCityPopUp(){
+    public WebElement getTextMessageFromPopUp(){
         return driver.findElement(By.className("success"));
     }
     
