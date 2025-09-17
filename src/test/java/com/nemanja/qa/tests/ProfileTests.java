@@ -1,5 +1,6 @@
 package com.nemanja.qa.tests;
 
+import org.openqa.selenium.Keys;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -31,38 +32,12 @@ public class ProfileTests extends BasicTest{
         loginPage.getLoginButton().click();
         navPage.getProfileButton().click();
         profilePage.waitForPageToBeLoaded();
-        Assert.assertEquals(profilePage.getMailInput()
-                            .getAttribute("type"),
-                            "email",
-                            "Value should be 'email'");
+        
+        profilePage.verifyInputTypes();
         Assert.assertFalse(profilePage.getMailInput()
                             .isEnabled(),
-                            "Input should be disabled");
-        Assert.assertEquals(profilePage.getNameInput()
-                            .getAttribute("type"),
-                            "text",
-                            "Value should be 'text'");      
-        Assert.assertEquals(profilePage.getCityInput()
-                            .getAttribute("type"),
-                            "text",
-                            "Value should be 'text'");       
-        Assert.assertEquals(profilePage.getCountryInput()
-                            .getAttribute("type"),
-                            "text",
-                            "Value should be 'text'"); 
-        Assert.assertEquals(profilePage.getTwitterUrlInput()
-                            .getAttribute("type"),
-                            "url",
-                            "Value should be 'url'");         
-        Assert.assertEquals(profilePage.getGitHubUrlInput()
-                            .getAttribute("type"),
-                            "url",
-                            "Value should be 'url'");  
-        Assert.assertEquals(profilePage.getPhoneInput()
-                            .getAttribute("type"),
-                            "tel",
-                            "Value should be 'tel'");  
-        navPage.getLogoutButton().click();
+                            "Input should be disabled");  
+        navPage.getLogoutButton().click(); 
     }
-   
+    
 }
