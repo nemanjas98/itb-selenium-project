@@ -20,6 +20,30 @@ public class ProfilePage {
         return driver.findElement(By.id("email"));
     }
     
+    public WebElement getNameInput(){
+        return driver.findElement(By.id("name"));
+    }
+    
+    public WebElement getCityInput(){
+        return driver.findElement(By.id("city"));
+    }
+    
+    public WebElement getCountryInput(){
+        return driver.findElement(By.id("country"));
+    }
+    
+    public WebElement getTwitterUrlInput(){
+        return driver.findElement(By.id("urlTwitter"));
+    }
+    
+    public WebElement getGitHubUrlInput(){
+        return driver.findElement(By.id("urlGitHub"));
+    }
+
+     public WebElement getPhoneInput(){
+        return driver.findElement(By.id("phone"));
+    }   
+    
     public void waitForPageToBeLoaded(){
         wait.until(ExpectedConditions
                 .elementToBeClickable(By.className("btnSave")));
