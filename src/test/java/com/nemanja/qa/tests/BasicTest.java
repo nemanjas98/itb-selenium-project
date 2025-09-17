@@ -7,10 +7,16 @@ import com.nemanja.qa.pages.NavPage;
 import com.nemanja.qa.pages.ProfilePage;
 import com.nemanja.qa.pages.SignupPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -53,7 +59,26 @@ public abstract class BasicTest {
 	}
 	
     @AfterMethod
-    public void afterMethod() {
+    public void afterMethod(ITestResult result) {
+        if(ITestResult.FAILURE == result.getStatus()){
+            TakesScreenshot ts = (TakesScreenshot) driver;
+            File src = ts.getScreenshotAs(OutputType.FILE);
+            
+            File screenshotDir = new File("src/test-output/screenshots");
+            if(!screenshotDir.exists()){
+                screenshotDir.mkdir();
+            }
+            
+            File dest = new File(screenshotDir, result.getName() + "_"
+                                 + System.currentTimeMillis() + ".png");
+            try{
+                FileUtils.copyFile(src, dest);
+                System.out.println("Screenshot saved: " + dest.getAbsolutePath());
+            }
+            catch (IOException e) {
+            e.printStackTrace();
+        }
+        }
 	}
 	
     @AfterClass
